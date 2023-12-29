@@ -7,6 +7,7 @@ class Cycle(models.Model):
     title = models.CharField(max_length = 180, default="title")
     status = models.CharField(max_length = 180, default="NEW")
     category = models.PositiveIntegerField(default=0)
+    problem_description = models.CharField(max_length = 500, default="")
     plan_description = models.CharField(max_length = 500, default="")
     do_description = models.CharField(max_length = 500, default="")
     check_description = models.CharField(max_length = 500, default="")

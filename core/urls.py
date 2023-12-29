@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # from users import urls as user_urls
-from cycles import urls as cycle_urls
+from cycles import urls as cycles_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +26,7 @@ urlpatterns = [
         include(
             [
                 # path('', include(user_urls)),
-                path('', include(cycle_urls)),
+                path('', include(cycles_urls)),
             ]
         ),
     ),
