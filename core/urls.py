@@ -1,5 +1,5 @@
 """
-URL configuration for pdca_api project.
+URL configuration for project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,8 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# from users import urls as user_urls
+from cycles import urls as cycle_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('cycles.urls')),
+        path(
+        "api/",
+        include(
+            [
+                # path('', include(user_urls)),
+                path('', include(cycle_urls)),
+            ]
+        ),
+    ),
 ]
