@@ -23,9 +23,7 @@ class CycleApiView(APIView):
         Create the cycle with given cycle data
         '''
         data = {
-            'name': request.data.get('name'), 
-            "owner": request.data.get("owner"),
-            'user': request.user.id
+            'title': request.data.get('title'), 
         }
         serializer =CycleSerializer(data=data)
         if serializer.is_valid():
@@ -50,7 +48,7 @@ class CycleDetailApiView(APIView):
         '''
         Retrieves the cycle with given cycle_id
         '''
-        cycle_instance = self.get_object(Cycle_id, request.user.id)
+        cycle_instance = self.get_object(cycle_id, request.user.id)
         if not cycle_instance:
             return Response(
                 {"res": "Object with Cycle id does not exists"},
@@ -72,9 +70,12 @@ class CycleDetailApiView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         data = {
-            'task': request.data.get('task'), 
-            'completed': request.data.get('completed'), 
-            'user': request.user.id
+            'title': request.data.get('title'), 
+            'category': request.data.get('category'),
+            'plan_description': request.data.get('plan'), 
+            'do_description': request.data.get('plan'), 
+            'action_description': request.data.get('plan'), 
+            'check_description': request.data.get('plan'), 
         }
         serializer = CycleSerializer(instance = cycle_instance, data=data, partial = True)
         if serializer.is_valid():
