@@ -3,9 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Cycle
 from .serializers import CycleSerializer
+from drf_yasg.utils import swagger_auto_schema
 
 class CycleApiView(APIView):
     # 1. List all
+    @swagger_auto_schema(responses={200: CycleSerializer, 400: "Bad Request"})
     def get(self, request, *args, **kwargs):
         '''
         List all the Cycle items for given requested user
@@ -18,6 +20,7 @@ class CycleApiView(APIView):
     
 
     # 2. Create
+    @swagger_auto_schema(responses={200: CycleSerializer, 400: "Bad Request"})
     def post(self, request, *args, **kwargs):
         '''
         Create the cycle with given cycle data
@@ -35,6 +38,7 @@ class CycleApiView(APIView):
 
 class CycleDetailApiView(APIView):
     # add user_id to params for user based filtering
+    @swagger_auto_schema(responses={200: CycleSerializer, 400: "Bad Request"})
     def get_object(self, cycle_id):
         '''
         Helper method to get the object with given cycle_id, and user_id
@@ -45,6 +49,7 @@ class CycleDetailApiView(APIView):
             return None
 
     # 3. Retrieve
+    @swagger_auto_schema(responses={200: CycleSerializer, 400: "Bad Request"})
     def get(self, request, cycle_id, *args, **kwargs):
         '''
         Retrieves the cycle with given cycle_id
@@ -60,6 +65,7 @@ class CycleDetailApiView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     # 4. Update
+    @swagger_auto_schema(responses={200: CycleSerializer, 400: "Bad Request"})
     def put(self, request, cycle_id, *args, **kwargs):
         '''
         Updates the cycle item with given cycle_id if exists
